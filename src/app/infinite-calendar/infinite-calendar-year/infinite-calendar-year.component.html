@@ -1,0 +1,7 @@
+ <app-infinite-calendar-month #monthComponentList
+                              *ngFor="let firstDayOfMonth of firstDayOfMonthList"
+                              [firstDayOfMonth]="firstDayOfMonth"
+                              (onSelected)="onSelectedHandler($event)"
+ >
+  </app-infinite-calendar-month>
+

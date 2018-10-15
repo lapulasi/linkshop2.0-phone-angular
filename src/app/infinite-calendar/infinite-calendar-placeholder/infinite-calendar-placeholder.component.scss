@@ -1,0 +1,14 @@
+@import "../variables";
+
+ul{
+  display: inline;
+}
+
+li{
+  width: $cell-size;
+  height: $cell-size;
+  font-size: $fontSize;
+  float: left;
+  display: inline-block;
+
+}

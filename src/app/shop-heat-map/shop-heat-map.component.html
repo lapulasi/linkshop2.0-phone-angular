@@ -1,0 +1,20 @@
+<div class="heat-map-compare">
+  <div class="choose-time">
+    <app-infinite-calendar (onSelected)="onDateRangeChanged($event)" [defaultDate]="defaultDate"></app-infinite-calendar>
+  </div>
+
+  <app-heat-map #appHeatMap [org]="org" [shopId]="shopId"></app-heat-map>
+  <div class="add-compare">
+    <p>添加对比</p>
+    <ul>
+      <li (click)="gotoDateCompareHeatMapPage()">
+        <span  class="icon time-icon"></span>
+        <span>时段对比</span>
+      </li>
+      <li (click)="gotoShopListPage()">
+        <span class="icon shop-icon"></span>
+        <span>门店对比</span>
+      </li>
+    </ul>
+  </div>
+</div>

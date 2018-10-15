@@ -1,0 +1,98 @@
+<div class="full-page-trend salesTrends" id="salesTrends">
+  <ul class="nav">
+    <li [ngClass]="{'current': tabIndex == 0}"  (click)="getDayStat()">
+      <span>按日</span>
+      <span></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 1}" (click)="getWeekStat()">
+      <span>按周</span>
+      <span class=""></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 2}" (click)="getMonthStat()">
+      <span>按月</span>
+      <span class=""></span>
+    </li>
+  </ul>
+  <div class="effect">
+    <div class="chart">
+      <div class="chart-content">
+        <div id="store-trend-bar1" echarts [options]="salesTrendLine1" (mousedown)="mousedown()"></div>
+        <!--营业额和均价-->
+        <!--<div id="store-trend-line1" echarts [options]="salesTrendLine2" (chartClick)="onChartClick($event)"></div>-->
+        <!--客流均价-->
+      </div>
+    </div>
+    <div class="dataArea">
+      <ul class="px">
+        <li class="map-icon"></li>
+        <li class="label">营业额(元)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{(salesAmount[dataIndex] / 1000) | number: '1.0-2'}}K</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="jj">
+        <li class="map-icon"></li>
+        <li class="label">均价(元)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{(averageSales[dataIndex] / 1000) | number: '1.0-2'}}K</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="kljj">
+        <li class="map-icon"></li>
+        <li class="label">客流均价(元)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{guestAverage[dataIndex] / 1000 | number: '1.0-2'}}k</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="effect" >
+    <div class="chart">
+      <div class="chart-content">
+        <!--<div id="store-trend-line2" echarts [options]="salesTrendbar"></div>-->
+        <div id="store-trend-bar2" echarts [options]="salesTrendLine3" (mousedown)="mousedown1()"></div>
+      </div>
+    </div>
+    <div class="dataArea">
+      <ul class="xl">
+        <li class="map-icon"></li>
+        <li class="label">销量(件)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{salesVolume[dataIndex1]}}</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="qzdd">
+        <li class="map-icon"></li>
+        <li class="label">转化率</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span> <!--icon i-down i-up-->
+            <span>{{conversionRates[dataIndex1]| percent: '1.2-2'}}</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="sx">
+        <li class="map-icon"></li>
+        <li class="label">时效</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{hoursRatio[dataIndex1]}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,GAAG;EACD,UAAU,EAAE,MAAM;EAClB,MAAM,ECOI,MAAY;EDNtB,WAAW,ECMD,MAAY;EDLtB,OAAO,EAAE,CAAC;;AAGZ,IAAI;EACF,UAAU,EAAE,MAAM;EAElB,MAAM,EAAE,MAAa;EACrB,WAAW,EAAE,MAAa;EAC1B,OAAO,EAAE,YAAY;EACrB,MAAM,EAAE,CAAC",
+"sources": ["infinite-calendar-board.component.scss","../_variables.scss"],
+"names": [],
+"file": "infinite-calendar-board.component.css"
+}

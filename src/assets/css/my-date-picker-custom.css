@@ -1,0 +1,14 @@
+div.datevalue{
+  font-size: 14px;
+}
+div.mydrp {
+  border: none;
+}
+div.mydrp input{
+  text-align: center;
+}
+div.mydrp input:focus{
+  color: transparent;
+  text-shadow: 0 0 0 #000000;
+}
+

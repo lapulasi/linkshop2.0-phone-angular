@@ -1,0 +1,53 @@
+/**
+  自动义nouislider样式
+ */
+.noUi-connect{
+  background: #83AFFF!important;
+}
+.noUi-horizontal{
+  height: 5.75px!important;
+  border-width: 0px!important;
+}
+.noUi-horizontal .noUi-handle{
+  width: 20px!important;
+  height: 20px!important;
+  border-radius: 50%!important;
+  box-sizing: border-box!important;
+  border: 6px solid #4280F2!important;
+  background: #fff!important;
+  box-shadow: 0 2px 4px 0 rgba(66, 128, 242, 0.5)!important;
+}
+.noUi-handle:before,
+.noUi-handle:after{
+  width: 0px!important;
+}
+
+.noUi-tooltip {
+  font-size: 12px;
+  display: block;
+  position: absolute;
+  border: none;
+  background: #4280F2;
+  border-radius: 2px;
+  color: #fff;
+  width: 34px;
+  height: 20px;
+  line-height: 12px;
+  top: -32px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.noUi-tooltip:after{
+  content: ' ';
+  position: absolute;
+  background: transparent;
+  width: 0;
+  border: 0;
+  left: 13px;
+  bottom: -3px;
+  z-index: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #4280F2;
+}

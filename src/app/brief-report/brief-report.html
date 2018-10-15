@@ -1,0 +1,162 @@
+<div class="shortNews">
+  <div class="salesShort">
+    <div class="panel">
+      <p class="title">昨日销售简述</p>
+      <ul>
+        <li>
+          <span>{{salesBrief?.allVolume}}</span>
+          <span>昨日销量</span>
+        </li>
+        <li>
+          <span>{{salesBrief?.allAmount / 1000 | number: '1.0-2'}}K</span>
+          <span>昨日销额</span>
+        </li>
+        <li>
+          <span>{{salesBrief?.allVolume === 0 ? 0 : salesBrief?.allAmount/salesBrief?.allVolume/1000 | number: '1.0-2'}}K</span>
+          <span>均价</span>
+        </li>
+        <li>
+          <span>{{salesBrief?.guestCount ===0 ? 0: salesBrief?.allVolume/salesBrief?.guestCount | percent: '1.2-2'}}</span>
+          <span>转化率</span>
+        </li>
+      </ul>
+    </div>
+    <div id="salesShort" echarts [options]="salesShort"></div>
+  </div>
+  <div class="big-panel flowShort">
+    <div class="panel">
+      <p class="title">近期客流简述</p>
+    </div>
+    <div id="flowShort" echarts [options]="flowShort"></div>
+  </div>
+  <div class="big-panel onTheJob">
+    <div class="panel">
+      <p class="title">销售顾问在岗情况</p>
+      <ul *ngIf="!isShop">
+        <li>
+          <span>{{staffNum}}</span>
+          <span>员工数</span>
+        </li>
+        <li>
+          <span>{{ondutyStaffNum}}</span>
+          <span>当前在岗</span>
+        </li>
+        <li>
+          <span>{{staffNum ===0 ? 0 : yesWorkTime / staffNum | number: '1.0-2'}}h</span>
+          <span>昨日平均工时</span>
+        </li>
+      </ul>
+      <ul class="viewShop" *ngIf="isShop">
+        <li>
+          <span>{{isOnDuty? '是': '否'}}</span>
+          <span>当前是否在岗</span>
+        </li>
+        <li>
+          <span>{{yesWorkTime}}h</span>
+          <span>昨日工作时长</span>
+        </li>
+      </ul>
+    </div>
+    <div id="onTheJob" echarts [options]="onTheJob"></div>
+  </div>
+  <div class="big-panel weather" *ngIf="!isShop">
+    <div class="panel">
+      <p class="title">今日天气概况</p>
+    </div>
+    <div class="tablePanel">
+      <table>
+        <thead>
+        <tr>
+          <th>区域</th>
+          <th>当前天气</th>
+          <th>昨日天气</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of todayWeatherInfo">
+          <td>{{item.name}}</td>
+          <td>{{item.todayWeather.name}}</td>
+          <td>{{item.yesterdayWeather.name}}</td>
+        </tr>
+        <!--<tr>
+          <td>深圳办</td>
+          <td>晴天</td>
+          <td>晴天</td>
+        </tr>
+        <tr>
+          <td>深圳办</td>
+          <td>晴天</td>
+          <td>晴天</td>
+        </tr>
+        <tr>
+          <td>深圳办</td>
+          <td>晴天</td>
+          <td>晴天</td>
+        </tr>
+        <tr>
+          <td>深圳办</td>
+          <td>晴天</td>
+          <td>晴天</td>
+        </tr>-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="big-panel weather recent" *ngIf="isShop">
+    <div class="panel">
+      <p class="title">近期天气概况</p>
+      <ul>
+        <li>
+          <span>{{currentWeather?.name}}</span>
+          <span>当前天气</span>
+        </li>
+        <li>
+          <span>{{yesWeather?.name}}</span>
+          <span>昨日天气</span>
+        </li>
+      </ul>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>日期</th>
+        <th>星期</th>
+        <th>天气</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of recentWeather">
+        <td>{{item.date}}</td>
+        <td>{{item.week}}</td>
+        <td>{{item.weather.name}}</td>
+      </tr>
+      <!--<tr>
+        <td>4月15日</td>
+        <td>星期日</td>
+        <td>晴天</td>
+      </tr>
+      <tr>
+        <td>4月15日</td>
+        <td>星期日</td>
+        <td>晴天</td>
+      </tr>
+      <tr>
+        <td>4月15日</td>
+        <td>星期日</td>
+        <td>晴天</td>
+      </tr>
+      <tr>
+        <td>4月15日</td>
+        <td>星期日</td>
+        <td>晴天</td>
+      </tr>-->
+      </tbody>
+    </table>
+  </div>
+  <div class="big-panel normalRate" *ngIf="!isShop">
+    <div class="panel">
+      <p class="title">设备正常率</p>
+    </div>
+    <div id="normalRate" echarts [options]="normalRate"></div>
+  </div>
+</div>

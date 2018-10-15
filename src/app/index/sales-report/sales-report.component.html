@@ -1,0 +1,29 @@
+<div class="sales-report">
+
+  <div class="panel">
+    <ul>
+      <li>门店名称</li>
+      <li>{{shopName}}</li>
+    </ul>
+    <ul>
+      <li>上报时间</li>
+      <li>
+        <p class="select-btn"><span (click)="switchTime(1)"><i class="i-up"></i></span><span (click)="switchTime(-1)"><i class="i-down"></i></span></p>
+        <span>{{reportTime}}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <ul>
+      <li>交易总金额(元)</li>
+      <li><input type="number" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"  placeholder="请输入交易额" [(ngModel)]="totalMoney"></li>
+    </ul>
+    <ul>
+      <li>交易件数</li>
+      <li><input type="number" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"  placeholder="请输入交易件数" [(ngModel)]="salesNum"></li>
+    </ul>
+  </div>
+  <p class="error">{{errorMsg}}</p><button (click)="report()">确认上报</button>
+
+</div>

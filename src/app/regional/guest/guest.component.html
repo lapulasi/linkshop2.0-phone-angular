@@ -1,0 +1,50 @@
+<div class="regional" [ngClass]="{'hide': regionService.overviewShow || regionService.searchShow}">
+  <app-condition (condChange)="condChange($event)"></app-condition>
+
+  <div class="content">
+    <div class="fleeing">
+      <div class="fleeNum down-up-tips" (click)="cond.show = !cond.show"><span>{{selectedTarget.name}}</span><span class="icon down-tips"></span></div>
+      <div class="search" (click)="regionService.gotoSearch(path)">
+        <ul>
+          <li></li>
+          <li id="scroll">搜索</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flee-panel" [ngClass]="{'content-mask': cond.show}"><!--遮罩层 content-mask-->
+      <ul class="list">
+        <li *ngFor="let item of dataList; index as i;" id="target{{item.id}}">
+          <span [ngClass]="{'pink': i ==0, 'yellow': i ==1, 'purple': i ==2}">{{i+1}}</span>
+          <span>{{item.name}}</span>
+          <span>{{item[selectedTarget.type] | number: '1.0-2'}}{{selectedTarget.unit}}</span>
+        </li>
+      </ul>
+      <div class="filter" [ngClass]="{'hide': !cond.show}">
+        <p class="title">筛选指标</p>
+        <ul>
+          <li *ngFor="let item of targetList" [ngClass]="{'select': item.type==selectedTarget.type}" (click)="selectedTarget=item;">{{item.name}}</li>
+        </ul>
+        <p class="title">筛选性别</p>
+        <ul>
+          <li *ngFor="let item of genderList" [ngClass]="{'select': item.value==cond.gender}" (click)="cond.gender=item.value">{{item.name}}</li>
+        </ul>
+        <p class="title">筛选年龄(可多选)</p>
+        <ul>
+          <li *ngFor="let item of ageList" [ngClass]="{'select': (cond.age === '' && item.value === '') || (item.value !== '' && cond.age.indexOf(item.value) >= 0)}" (click)="selectAgeRange(item.value)">{{item.name}}</li>
+        </ul>
+        <div class="buttons">
+          <button class="reset" (click)="cond.age='';cond.gender='';">重置</button>
+          <button class="over" (click)="searchData()">完成</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="overview" *ngIf="regionService.overviewShow">
+  <app-guest-overview [dataList]="dataList" [selectedTarget]="selectedTarget" [acceptCond]="acceptCond" [cond]="cond"></app-guest-overview>
+</div>
+<div class="regional" *ngIf="regionService.searchShow">
+  <app-search (valChange)="regionService.hideSearch($event, path)" [org]="acceptCond.org" [selectedLevel]="acceptCond.selectedLevel"></app-search>
+</div>

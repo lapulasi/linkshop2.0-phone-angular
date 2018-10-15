@@ -1,0 +1,19 @@
+// @Variables
+$textColor: #3d3d3d;
+$textColorDisabled: #AAA;
+$rowHeight: 56px;
+$borderRadius: 3px;
+$borderColor: #E9E9E9;
+$cellHoverBg: #EFEFEF;
+$fontSize:0.3rem;
+
+
+$cell-size: 3* $fontSize;
+
+$calendar-container-width: 7* $cell-size;
+$calendar-container-height:6 * $cell-size;
+
+$calendar-width:$calendar-container-width ;
+$calendar-height:8 * $cell-size;
+
+

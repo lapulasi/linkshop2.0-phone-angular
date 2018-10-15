@@ -1,0 +1,84 @@
+<div class="shop-suggest" id="shop-suggest">
+  <!--<ul class="full-data">-->
+    <!--<li>-->
+      <!--<span>平均坪效</span>-->
+      <!--<p>69K <span>/㎡</span></p>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span>平均人效</span>-->
+      <!--<p>69人 <span>/人</span></p>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span>服务能力</span>-->
+      <!--<p>69人 <span>/人</span></p>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span>工作时长</span>-->
+      <!--<p>7h <span>/天</span></p>-->
+    <!--</li>-->
+  <!--</ul>-->
+  <div class="trend-map growth-trend">
+    <div class="title">
+      增长趋势 <span>分析各项指标的增长趋势</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':growthTrendType === 'day'}" (click)="getGrowthTrend('day')">按日</li>
+      <li [ngClass]="{'select':growthTrendType === 'week'}" (click)="getGrowthTrend('week')">按周</li>
+      <li [ngClass]="{'select':growthTrendType === 'month'}" (click)="getGrowthTrend('month')">按月</li>
+    </ul>
+    <div class="chart">
+      <div class="chart-content">
+        <div id="growth-trend-bar" ></div>
+        <!--<div id="growth-trend-line" echarts [options]="growthTrendLine"></div>-->
+      </div>
+    </div>
+    <ul class="labels">
+      <li [ngClass]="{'select':isDisplayed('areaEffect')}" (click)="displayField('areaEffect')">坪效</li>
+      <li [ngClass]="{'select':isDisplayed('staffEffect')}" (click)="displayField('staffEffect')">人效</li>
+      <li [ngClass]="{'select':isDisplayed('collectGuestEffect')}" (click)="displayField('collectGuestEffect')">集客力</li>
+      <li [ngClass]="{'select':isDisplayed('workMins')}" (click)="displayField('workMins')">工作时长</li>
+      <li [ngClass]="{'select':isDisplayed('managerAccessCount')}" (click)="displayField('managerAccessCount')">圈长到店</li>
+      <li [ngClass]="{'select':isDisplayed('serviceEffect')}" (click)="displayField('serviceEffect')">服务能力</li>
+    </ul>
+  </div>
+  <!--<div class="trend-map day-service">-->
+    <!--<div class="title">-->
+      <!--日间服务能力 <span>根据此指标分析员工的工作情况</span>-->
+    <!--</div>-->
+    <!--<ul class="tab">-->
+      <!--<li class="select">近7天</li>-->
+      <!--<li>近30天</li>-->
+      <!--&lt;!&ndash;<li>全部</li>&ndash;&gt;-->
+    <!--</ul>-->
+    <!--<div class="chart">-->
+      <!--<div class="">-->
+        <!--<div id="day-service-line" echarts [options]="dayService"></div>-->
+        <!--&lt;!&ndash;<div id="growth-trend-bar"></div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="trend-map shop-data">-->
+    <!--<div class="title">-->
+      <!--增长趋势 <span>分析各项指标的增长趋势</span>-->
+    <!--</div>-->
+    <!--<ul class="tab">-->
+      <!--<li class="select">按日</li>-->
+      <!--<li>按周</li>-->
+      <!--<li>按月</li>-->
+    <!--</ul>-->
+    <!--<div class="chart">-->
+      <!--<div class="">-->
+        <!--<div id="shop-data-bar"echarts [options]="growthTrend"></div>-->
+        <!--&lt;!&ndash;<div id="growth-trend-bar"></div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<ul class="labels">-->
+      <!--<li>坪效</li>-->
+      <!--<li>人效</li>-->
+      <!--<li>集客力</li>-->
+      <!--<li class="select">工作时长</li>-->
+      <!--<li>圈长到店</li>-->
+      <!--<li>服务能力</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+</div>

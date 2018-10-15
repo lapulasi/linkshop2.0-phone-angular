@@ -1,0 +1,96 @@
+<div class="myManage">
+  <div class="user-center-panel">
+    <div class="banner">
+      <img src="{{user?.headImg ? (preImgUrl + user?.headImg) : '../../assets/images/nv.png'}}" alt="">
+      <ul>
+        <li class="phone">{{user?.phone}}</li>
+        <!--<li class="end-time">账号到期：2018年12月18日</li>-->
+      </ul>
+    </div>
+  </div>
+  <div class="panel">
+    <div>
+      <a
+        [routerLink]="['/user/account']"
+        [queryParams]="{'headImg': user?.headImg,'realName':user?.realName, 'phone':user?.phone}">
+        <img src="../../assets/images/zhgl.png" alt="">
+        <ul class="border">
+          <li>
+            <span>账号管理</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+    <div>
+      <a href="device://manage">
+        <img src="../../assets/images/sbgl.png" alt="">
+        <ul class="border">
+          <li>
+            <span>设备管理</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+    <div>
+      <a href="org://switch">
+        <img src="../../assets/images/zzqh.png" alt="">
+        <ul>
+          <li>
+            <span>组织切换</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </div>
+  <!--<div class="panel">
+    <div>
+      <a [routerLink]="['/account', userId]">
+        <img src="../../assets/images/kqgl.png" alt="">
+        <ul>
+          <li>
+            <span>考勤管理</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </div>-->
+  <div class="panel">
+    <div>
+      <a href="https://www.kancloud.cn/avc_linkshop/linkshop/536572">
+        <img src="../../assets/images/cpsm.png" alt="">
+        <ul class="border">
+          <li>
+            <span>使用说明</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+    <div>
+      <a [routerLink]="['/user/question']">
+        <img src="../../assets/images/cjwt.png" alt="">
+        <ul class="border">
+          <li>
+            <span>常见问题</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+    <div>
+      <a [routerLink]="['/user/concat']">
+        <img src="../../assets/images/lxwm.png" alt="">
+        <ul>
+          <li>
+            <span>联系我们</span>
+            <span class="rightTip"></span>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </div>
+</div>

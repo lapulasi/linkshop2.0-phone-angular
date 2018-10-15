@@ -1,0 +1,94 @@
+<div class="full-page-trend storeTrends" id="storeTrends">
+  <ul class="nav">
+    <li [ngClass]="{'current': tabIndex == 0}"  (click)="getDayStat()">
+      <span>按日</span>
+      <span></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 1}" (click)="getWeekStat()">
+      <span>按周</span>
+      <span class=""></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 2}" (click)="getMonthStat()">
+      <span>按月</span>
+      <span class=""></span>
+    </li>
+  </ul>
+  <div class="effect">
+    <div class="chart">
+      <div class="chart-content">
+        <div id="store-trend-bar1" echarts [options]="storeTrendLine1" (mousedown)="mousedown()"></div><!--坪效和人效-->
+      </div>
+    </div>
+    <div class="dataArea">
+      <ul class="px">
+        <li class="map-icon"></li>
+        <li class="label">坪效(/㎡)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{(pingEffect[dataIndex] / 1000) | number: '1.2-2'}}K</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="rx">
+        <li class="map-icon"></li>
+        <li class="label">人效(/人)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{(humanEffect[dataIndex] / 1000) | number: '1.2-2'}}K</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="jkl">
+        <li class="map-icon"></li>
+        <li class="label">集客力(㎡/天)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{flowCapacity[dataIndex]}}人</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="effect">
+    <div class="chart">
+      <div class="chart-content">
+        <div id="store-trend-line2"   echarts [options]="storeTrendLine2" (mousedown)="mousedown1()"></div><!--圈长到店和服务能力-->
+      </div>
+    </div>
+    <div class="dataArea">
+      <ul class="gzsc">
+        <li class="map-icon"></li>
+        <li class="label">工作时长(/天)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{workTime[dataIndex1]}}h</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="qzdd">
+        <li class="map-icon"></li>
+        <li class="label">圈长到店(/天)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{quanArrive[dataIndex1]}}次</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="fwnl">
+        <li class="map-icon"></li>
+        <li class="label">服务能力(/人)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{serviceAbility[dataIndex1]}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

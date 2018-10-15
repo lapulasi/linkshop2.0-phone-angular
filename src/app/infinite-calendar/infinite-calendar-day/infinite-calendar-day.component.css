@@ -1,0 +1,35 @@
+li {
+  color: #212529;
+  width: 0.9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  font-size: 0.3rem;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 50%; }
+  li .label {
+    font-size: 0.09rem;
+    width: 100%;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    margin: 0;
+    padding: 0; }
+  li .first-day-of-month-content {
+    height: 0.3rem;
+    font-size: 0.3rem;
+    line-height: 0.3rem;
+    margin: 0;
+    padding: 0; }
+  li.today {
+    border: 1px #ffa726 solid; }
+
+.first-day-of-month {
+  color: red; }
+
+.selected {
+  border: none !important;
+  background-color: #007bff;
+  color: #fff; }
+
+/*# sourceMappingURL=infinite-calendar-day.component.css.map */

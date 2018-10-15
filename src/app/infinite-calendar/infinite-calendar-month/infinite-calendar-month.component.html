@@ -1,0 +1,3 @@
+<ul style="display: inline;"   #monthContainer>
+  <app-infinite-calendar-day *ngFor="let date of dayList" [day]="date" (onSelected)="onSelectedHandler($event)"></app-infinite-calendar-day>
+</ul>

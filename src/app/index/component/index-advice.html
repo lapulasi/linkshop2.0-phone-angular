@@ -1,0 +1,174 @@
+<!--<div class="header">
+  <span class="backMap" (click)="backMap()"></span>
+  &lt;!&ndash;<h1>{{currViewOrg.name}}</h1>&ndash;&gt;
+</div>-->
+<div class="detailPage">
+<div class="index">
+<div class="ssjk">
+  <div class="level-1-title">
+    <span class="icon titleIcon"></span>
+    <span class="title">实时监控</span>
+    <!--<span class="backMap" (click)="backMap()"></span>-->
+  </div>
+  <ul>
+    <li>
+      <span>当前客流</span>
+      <span>{{todayData?.guestCount}}人</span>
+    </li>
+    <li *ngIf="manageRole === '1'">
+      <span>店均客流</span>
+      <span>{{todayData?.shopNum == 0 ? 0 : (todayData?.guestCount / todayData?.shopNum) | number: '1.0-0'}}人</span>
+    </li>
+    <li *ngIf="manageRole === '1' && !org.orgLevel.shop">
+      <span>店均讲解</span>
+      <span>{{todayData?.explainTime / todayData?.shopNum | number: '1.0-1'}}分钟</span>
+    </li>
+    <li *ngIf="org.orgLevel.shop">
+      <span>驻留数</span>
+      <span>{{todayData?.stayGuestCount}}</span>
+    </li>
+    <li *ngIf="manageRole === '1'">
+      <span>设备正常率</span>
+      <span>{{todayData?.goodDeviceNum + todayData?.brokenDeviceNum == 0 ? 0 :
+        (todayData?.goodDeviceNum / (todayData?.goodDeviceNum + todayData?.brokenDeviceNum)) * 100 | number: '1.0-0'}}%</span>
+    </li>
+    <li *ngIf="manageRole === '0'">
+      <span>今日温度</span>
+      <span>{{weatherInfo == null ? 25 : weatherInfo?.temperature}}℃</span>
+    </li>
+    <li *ngIf="manageRole  === '0'">
+      <span>当前天气</span>
+      <span>{{weatherInfo?.weather.name}}</span>
+    </li>
+  </ul>
+</div>
+<div class="zrjy">
+  <div class="level-1-title">
+    <span class="icon titleIcon"></span>
+    <span class="title">昨日经营</span>
+  </div>
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <span>昨日销额</span>
+        <span>{{yesterdayData?.allAmount | number: '1.0-0'}}元</span>
+      </td>
+      <td rowspan="2">
+        <span>转化率</span>
+        <span>{{yesterdayData?.guestCount == 0 ? 0 : (yesterdayData?.allVolume / yesterdayData?.guestCount) * 100 | number: '1.0-0'}}%</span>
+      </td>
+      <td>
+        <span>均价</span>
+        <span>{{yesterdayData?.allVolume == 0 ? 0 : (yesterdayData?.allAmount /yesterdayData?.allVolume) | number: '1.0-0'}}元</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>成交件数</span>
+        <span>{{yesterdayData?.allVolume}}</span>
+      </td>
+      <td>
+        <span>客流均价</span>
+        <span>{{yesterdayData?.guestCount == 0 ? 0 : (yesterdayData?.allAmount / yesterdayData?.guestCount) | number: '1.0-0'}}元</span>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="view-rank" (click)="gotoSalesRank()">查看排行榜</div>
+<div class="lscm">
+  <div class="level-1-title">
+    <span class="icon titleIcon"></span>
+    <span class="title">零售参谋</span>
+  </div>
+  <div class="jzlzs" (click)="gotoCompetitive()">
+    <div class="jzl">
+      <img src="../../../assets/images/jzlzs.jpg" alt="">
+    </div>
+    <div class="content">
+      <p class="level-2-title">竞争力指数</p>
+      <div class="cont multiple-omitted">综合客流、均价、转化率、坪效、人效指标对门店进行评分，让您轻松看出门店竞争力的优势与短板。</div>
+    </div>
+  </div>
+  <div *ngIf="!org.orgLevel || !org.orgLevel.shop" class="secondary-panel">
+    <div class="content">
+      <p class="level-2-title">区域表现</p>
+      <div class="cont">您可自主选择客流、销售及门店的相关指标，了解某个时段内的区域概况和门店详细排名。</div>
+    </div>
+    <ul>
+      <li (click)="gotoRegional('guest')">
+        <img src="../../../assets/images/qybx_customer.jpg" alt="">
+        <p>客流表现</p>
+      </li>
+      <li (click)="gotoRegional('sales')">
+        <img src="../../../assets/images/qybx_sales.jpg" alt="">
+        <p>销售表现</p>
+      </li>
+      <li (click)="gotoRegional('effective')">
+        <img src="../../../assets/images/qybx_shop.jpg" alt="">
+        <p>门店表现</p>
+      </li>
+    </ul>
+  </div>
+  <div class="secondary-panel">
+    <div class="content">
+      <p class="level-2-title">趋势分析</p>
+      <div class="cont">查看客流、销售及门店相关指标的日/周/月数据趋势，您可洞察该项指标的未来发展走向。</div>
+    </div>
+    <ul>
+      <li (click)="gotoTrend('customer')">
+        <img src="../../../assets/images/qsfx_customer.jpg" alt="">
+        <p>客流趋势</p>
+      </li>
+      <li (click)="gotoTrend('sales')">
+        <img src="../../../assets/images/qsfx_sales.jpg" alt="">
+        <p>销售趋势</p>
+      </li>
+      <li (click)="gotoTrend('shop')">
+        <img src="../../../assets/images/qsfx_shop.jpg" alt="">
+        <p>门店趋势</p>
+      </li>
+    </ul>
+  </div>
+  <div class="secondary-panel">
+    <div class="content">
+      <p class="level-2-title">参谋建议</p>
+      <div class="cont">针对关键数据，我们为您提供解读参考和建议，帮助您有效分析数据，让数据意义最大化。</div>
+    </div>
+    <ul>
+      <li (click)="gotoSalesSuggest()">
+        <img src="../../../assets/images/cmjy_customer.jpg" alt="">
+        <p>客流参谋</p>
+      </li>
+      <li (click)="gotoShopSuggest()">
+        <img src="../../../assets/images/cmjy_sales.jpg" alt="">
+        <p>销售参谋</p>
+      </li>
+      <li (click)="gotoCustomerSuggest()">
+        <img src="../../../assets/images/cmjy_shop.jpg" alt="">
+        <p>门店参谋</p>
+      </li>
+    </ul>
+  </div>
+  <div class="secondary-panel hide">
+    <div class="content">
+      <p class="level-2-title">多维分析</p>
+      <div class="cont">您可以选择门店或促销活动进行对比分析，也可查看不同天气对客流和销售的影响趋势。</div>
+    </div>
+    <ul>
+      <li>
+        <img src="../../../assets/images/dwfx_customer.jpg" alt="">
+        <p></p>
+      </li>
+      <li>
+        <img src="../../../assets/images/dwfx_sales.jpg" alt="">
+        <p></p>
+      </li>
+      <li>
+        <img src="../../../assets/images/dwfx_shop.jpg" alt="">
+        <p>天气分析</p>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>

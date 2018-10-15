@@ -1,0 +1,11 @@
+ul {
+  display: inline; }
+
+li {
+  width: 0.9rem;
+  height: 0.9rem;
+  font-size: 0.3rem;
+  float: left;
+  display: inline-block; }
+
+/*# sourceMappingURL=infinite-calendar-placeholder.component.css.map */

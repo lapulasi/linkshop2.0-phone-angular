@@ -1,0 +1,55 @@
+<div class="full-page-trend customerTrends" id="customerTrend">
+  <ul class="nav">
+    <li [ngClass]="{'current': tabIndex == 0}"  (click)="getDayStat()">
+      <span>按日</span>
+      <span></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 1}" (click)="getWeekStat()">
+      <span>按周</span>
+      <span class=""></span>
+    </li>
+    <li [ngClass]="{'current': tabIndex == 2}" (click)="getMonthStat()">
+      <span>按月</span>
+      <span class=""></span>
+    </li>
+  </ul>
+  <div class="effect">
+    <div class="chart">
+      <div class="chart-content">
+        <div id="customer-trend-line"  echarts [options]="customerTrendLine" (mousedown)="mousedown()"></div><!--客流量和店均客流-->
+      </div>
+    </div>
+    <div class="dataArea">
+      <ul class="px">
+        <li class="map-icon"></li>
+        <li class="label">客流量(人)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{passengerTraffic[dataIndex]}}</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="zlsj">
+        <li class="map-icon"></li>
+        <li class="label">平均驻留时间</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{averageDwellTime[dataIndex]}}min</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="kljj">
+        <li class="map-icon"></li>
+        <li class="label">店均客流(人)</li>
+        <li class="data-intro">
+          <div>
+            <span class=""></span>
+            <span>{{shopTraffic[dataIndex]}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="competitive regional" id="competitive">
+  <div class="select-time">
+    <ul>
+      <li (click)="switchDate(-1)" class="icon left-tip"></li>
+      <li>{{dateObj.date | date : 'yyyy-M'}}</li>
+      <li (click)="switchDate(1)" class="icon right-tip"></li>
+    </ul>
+  </div>
+  <div class="map" *ngIf="org.orgLevel.level > 1">
+    <div id="map" echarts [options]="competitiveChart"></div>
+    <ul>
+      <li class="name" *ngIf="adcode == 0">{{org.name}}</li>
+      <li class="name" *ngIf="adcode != 0">某某省</li>
+      <li class="fraction-style">
+        <div>
+          <span class="border b-left"></span>
+          <span>综合评分</span>
+          <span class="border b-right"></span>
+        </div>
+      </li>
+      <li class="fraction">{{scoreSum}}</li>
+      <li class="time">统计时间：{{dateObj.date | date : 'yyyy年M月'}}</li>
+    </ul>
+  </div>
+  <div *ngIf="!org.orgLevel.shop" class="tab-title">
+    <ul>
+      <li [ngClass]="{'select': flag.levelShow == true}">
+        <div class="down-up-tips" (click)="flag.levelShow = !flag.levelShow; flag.typeSelectShow=false;">
+          <span>{{currLevel.name}}</span>
+          <span class="icon down-tips-s"></span>
+        </div>
+      </li>
+      <li [ngClass]="{'select': flag.typeSelectShow == true}">
+        <div class="down-up-tips" (click)="flag.typeSelectShow = !flag.typeSelectShow; flag.levelShow=false;">
+          <span>{{currDataType.name}}</span>
+          <span class="icon down-tips"></span>
+        </div>
+      </li>
+      <li (click)="sortEvent()">
+        <div class="down-up-tips" >
+          <span>排序</span>
+          <span class="icon" [ngClass]="{'up-tips': !desc, 'down-tips': desc}"></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!org.orgLevel.shop" class="competitive-panel " [ngClass]="{'content-mask': flag.levelShow || flag.typeSelectShow}">
+
+    <!---------数据列表--------->
+    <ul class="list">
+      <li *ngFor="let item of sortList; index as i;">
+        <span class="pink" [ngClass]="{'pink': i == 0, 'yellow': i == 1, 'purple': i == 2}">{{i + 1}}</span>
+        <span>{{item.name}}</span>
+        <span *ngIf="currDataType.id == 'avgGuestCount'">{{item.avgGuestCount | number: '1.0-0'}}人</span>
+        <span *ngIf="currDataType.id == 'avgPersonEfficacy'">{{item.avgPersonEfficacy | number: '1.0-2'}}元</span>
+        <span *ngIf="currDataType.id == 'avgAreaEfficacy'">{{item.avgAreaEfficacy | number: '1.0-2'}}元</span>
+        <span *ngIf="currDataType.id == 'transformRatio'">{{item.transformRatio * 100 | number: '1.0-0'}}%</span>
+        <span *ngIf="currDataType.id == 'avgPrice'">{{item.avgPrice | number: '1.0-0'}}元</span>
+      </li>
+
+    </ul>
+  <!------------------------------>
+    <ul class="filter" [ngClass]="{'hide': !flag.levelShow}">
+
+      <ng-container *ngIf="adcode == '0'">
+        <ng-container *ngFor="let item of levelList;last as isLast;">
+          <li (click)="switchLevel(item.id)" *ngIf="!isLast">
+            <span></span>
+            <span>{{item.name}}</span>
+          </li>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="adcode !== '0'">
+        <ng-container *ngFor="let item of levelList;first as isFirst;">
+          <li (click)="switchLevel(item.id)" *ngIf="isFirst">
+            <span></span>
+            <span>{{item.name}}</span>
+          </li>
+        </ng-container>
+
+        <li *ngIf="levelList.length > 2" (click)="switchLevel(zone.districtLevelId)">
+          <span></span>
+          <span>区域</span>
+        </li>
+        <li *ngIf="levelList.length > 3" (click)="switchLevel(zone.cityLevelId)">
+          <span></span>
+          <span>城市</span>
+        </li>
+        <li *ngIf="levelList.length > 4" (click)="switchLevel(zone.provinceLevelId)">
+          <span></span>
+          <span>省份</span>
+        </li>
+      </ng-container>
+
+    </ul>
+
+    <ul class="filter" [ngClass]="{'hide': !flag.typeSelectShow}">
+      <li *ngFor="let item of dataTypeList;" (click)="switchDataType(item)">
+        <span></span>
+        <span>{{item.name}}</span>
+      </li>
+
+    </ul>
+  </div>
+</div>

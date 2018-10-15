@@ -1,0 +1,66 @@
+.bubble_A {
+  background: url("../images/pink.png");
+  background-position: center;
+  background-size: cover; }
+
+.bubble_C {
+  background: url("../images/cyan-blue.png");
+  background-position: center;
+  background-size: cover; }
+
+.bubble_B {
+  background: url("../images/purple.png");
+  background-position: center;
+  background-size: cover; }
+
+.bubble_err_A {
+  background: url("../images/pink-err.png");
+  background-position: center;
+  background-size: cover; }
+
+.bubble_err_C {
+  background: url("../images/cyan-blue-err.png");
+  background-position: center;
+  background-size: cover; }
+
+.bubble_err_B {
+  background: url("../images/purple-err.png");
+  background-position: center;
+  background-size: cover; }
+
+/**-------------------**/
+.quadrant .svg-map {
+  width: 83.5%;
+  height: 2.1rem;
+  margin: -1rem auto 0;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.quadrant .svg-map li {
+  position: absolute;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5C626D;
+  width: 1.6rem;
+  height: 0.32rem;
+  text-align: center; }
+.quadrant .svg-map li.min {
+  left: -10.3%;
+  top: 0.7rem;
+  }
+.quadrant .svg-map li.one-four {
+  left: 14%;
+  top: 0.3rem;
+ }
+.quadrant .svg-map li.middle {
+  left: 37%;
+  }
+.quadrant .svg-map li.three-four {
+  left: 61%;
+  top: 0.3rem;
+   }
+.quadrant .svg-map li.max {
+  left: 85%;
+  top: 0.7rem;
+  }

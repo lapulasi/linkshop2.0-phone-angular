@@ -1,0 +1,20 @@
+<div class="shop-compare">
+  <div class="search">
+    <div *ngIf="!inputFocus">
+      <span class="search-icon"></span>
+      <span>搜索</span>
+    </div>
+    <input type="text" (focus)="inputFocus = true" (keyup)="onKeyUp(filterText.value)" #filterText>
+  </div>
+  <ul>
+        <ng-container *ngFor="let shop of shopList">
+          <li *ngIf="filter(shop['orgObj']['name'])" (click)="onSelectShop(shop)">
+            {{shop['orgObj']['name']}}
+          </li>
+        </ng-container>
+        <!--<li *ngFor="let shop of shopList" *ngIf="filter(shop['orgObj']['name'])"  (click)="onSelectShop(shop)" >{{shop['orgObj']['name']}}</li>-->
+
+
+    <!--<li *ngFor="let shop of shopList"   (click)="onSelectShop(shop)" >{{shop['orgObj']['name']}}</li>-->
+  </ul>
+</div>

@@ -1,0 +1,8 @@
+<div class="root">
+  <div class="rows">
+    <ul *ngFor="let row of dayListModel" class="row">
+      <app-infinite-calendar-day *ngFor="let day of row" [day]="day"></app-infinite-calendar-day>
+    </ul>
+  </div>
+
+</div>

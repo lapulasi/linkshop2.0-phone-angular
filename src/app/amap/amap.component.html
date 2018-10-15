@@ -1,0 +1,117 @@
+<div class="index">
+  <div class="mapPage">
+    <ngx-amap #map class="map"
+              (ready)="onMapReady($event)"
+              [center]="org.geo"
+              [viewMode]="'3D'"
+              [pitch]="50"
+              [mapStyle]="'amap://styles/grey'"
+              [rotateEnable]="false">
+
+      <ng-container *ngFor="let item of bubbleList">
+      <amap-marker [position]="item.geo" [offset]="offSet" [zIndex]="101"
+                   (markerClick)="markerClick($event)" [extData]="item"
+                   [content]="'<div class=\'bubble bubble_'+ (!hide.brokenIcon && item.brokenDeviceNum > 0 ? 'err_' : '') + item.shopGrade+'\'>' +
+                   (!hide.brokenIcon && item.brokenDeviceNum > 0 ? (item.brokenDeviceNum + '/' + (item.brokenDeviceNum + item.goodDeviceNum)) :
+                   ((dataType.selected.type === 'amount' ? (item[dataType.selected.fieldName] / 10000 | number: '1.0-1') : item[dataType.selected.fieldName]) + dataType.selected.unit)) +'</div>'"></amap-marker>
+
+      <amap-marker [position]="item.geo" [offset]="{x: -6 * item.name.length, y: 0}"
+                   (ready)="onMarkerReady(map)"
+                   [content]="'<div style=\'font-size: 14px; color: #fff;width: ' + (item.name.length + 1) * 14 + 'px;\'>' + item.name + '</div>'"></amap-marker>
+
+      </ng-container>
+    </ngx-amap>
+
+    <header>
+      <nav>
+        <ul>
+          <li (click)="!hide.mask ? '': levelLayerShow=!levelLayerShow">
+            <span class="selectTab down-tips" [ngClass]="{'down-tips': !levelLayerShow, 'up-tips': levelLayerShow}"></span>
+          </li>
+          <!--<li><span class="selectTab up-tips"></span></li>-->
+          <li *ngFor="let level of levelList" (click)="switchLevel(level)" [ngClass]="{current: level.id === selectedLevel?.id}">{{level.name}}</li>
+        </ul>
+      </nav>
+    </header>
+    <ul class="drop-down" [ngClass]="{'hide': !levelLayerShow}">
+      <li *ngFor="let item of levelTypeList"
+          [ngClass]="{'current': item.type == selectedLevleType.type}"
+          (click)="switchLevelType(item)"
+      >
+        <span></span>
+        <span>{{item.name}}</span>
+      </li>
+    </ul><!--下拉菜单-->
+    <!--<div class="weather-content">-->
+    <div class="lab" [ngClass]="{'delete-raduis': dataType.show}" (click)="dataType.show = !dataType.show">
+      <!--下拉菜单出现  加上delete-raduis 收起时删除-->
+      <span>{{dataType.selected.name}}</span>
+      <span class="tips up-tips" [ngClass]="{'down-tips': !dataType.show, 'up-tips': dataType.show}"></span>
+    </div>
+    <ul class="lab-drop-down" *ngIf="dataType.show">
+      <ng-container *ngFor="let item of dataType.list">
+        <li *ngIf="item.type != dataType.selected.type" (click)="changeDataType(item)">{{item.name}}</li>
+      </ng-container>
+    </ul>
+    <div class="weather" [ngClass]="{'hide': hide.weatherIcon}">
+      <img *ngIf="weatherInfo?.weather != null" src="../../../assets/images/{{weatherInfo?.weather.icon}}.png" alt="">
+      <p>{{weatherInfo == null ? 25 : weatherInfo?.temperature}} <span>℃</span></p>
+    </div>
+    <!--</div>-->
+    <!---------shop level begin------------>
+    <div class="map-content">
+      <div class="sortList" *ngIf="selectedLevel?.shop">
+        <div class="sort faultNum" *ngIf="!hide.brokenIcon">
+          <span>{{shop.brokenCount}}</span>
+          <span>故障</span>
+        </div>
+        <div *ngFor="let item of shop.gradeList" class="sort sort{{item.name}}">
+          <span>{{item.count}}</span>
+          <span>{{item.name}}类</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedLevel?.shop" (click)="switchIssue()" class="notice in-content" [ngClass]="{'notice-top-65': hide.weatherIcon}"><!--首页的消息通知用in-index  圈内店况in-content-->
+      <span class="title">问<br>题<br>门<br>店<br></span>
+      <span class="status" *ngIf="hide.brokenIcon">查看</span>
+      <span class="status" *ngIf="!hide.brokenIcon">取消</span>
+      <span class="tipsCircle"></span>
+    </div>
+
+    <!--------------shop level end---------------------->
+    <div class="backParent" *ngIf="!hide.backButton"  (click)="goBack()">
+      <span></span>
+      <span>返回</span>
+    </div>
+
+    <div class="mask-layer" [ngClass]="{'hide': hide.mask}"  (click)="hide.mask=true"></div><!--遮罩层-->
+    <div class="sub-buttle" [ngClass]="{'hide': hide.mask,
+    'quan-bubble': org?.orgLevel?.shop,
+    'shop-bubble': !selectedOrg?.isShop || (!org?.orgLevel?.shop && selectedOrg?.isShop && levelList.length >= 1)}"><!--商圈泡泡-->
+      <p>{{selectedOrg?.name}}</p>
+      <ul>
+        <li>{{dataType.selected.bubbleName}}</li>
+        <li>{{selectedOrg ? selectedOrg[dataType.selected.fieldName] + dataType.selected.unit : ''}}</li>
+        <li>排名：{{selectedOrg?.rank}}</li>
+      </ul>
+      <div *ngIf="!selectedOrg?.isShop">
+        <span (click)="gotoSearchShopPage()">巡店</span>
+        <span (click)="gotoBriefPage()">简报</span>
+        <span (click)="gotoNextLevel()">下钻</span>
+      </div>
+      <div *ngIf="!org?.orgLevel?.shop && selectedOrg?.isShop && levelList.length >= 1">
+        <span (click)="gotoShopInspecton()">巡店</span>
+        <span (click)="gotoHeatMap()">热力图</span>
+        <span (click)="gotoNextLevel()">下钻</span>
+      </div>
+      <div *ngIf="org?.orgLevel?.shop">
+        <span (click)="gotoShopInspecton()">巡店</span>
+        <span (click)="gotoHeatMap()">热力图</span>
+      </div>
+    </div>
+
+    <button class="viewData" (click)="gotoDetail()">点击查看所有门店总和数据</button>
+  </div>
+
+ <router-outlet></router-outlet>

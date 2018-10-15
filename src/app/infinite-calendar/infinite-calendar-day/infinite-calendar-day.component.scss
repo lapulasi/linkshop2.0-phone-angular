@@ -1,0 +1,48 @@
+@import "../variables";
+
+
+li{
+  color: #212529;
+  width: $cell-size;
+  height: $cell-size;
+  line-height: $cell-size;
+  font-size: $fontSize;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  //border-radius: (0.25 * $fontSize);
+  border-radius: 50%;
+  .label {
+    font-size: 0.3 * $fontSize;
+    //display: inline-block;
+    width: 100%;
+    height: $fontSize;
+    line-height: $fontSize;
+    margin: 0;
+    padding: 0;
+  }
+
+  .first-day-of-month-content{
+    height: $fontSize;
+    font-size: $fontSize;
+    line-height: $fontSize;
+    margin: 0;
+    padding: 0
+  }
+
+  &.today{
+    border:1px rgb(255, 167, 38) solid;
+  }
+
+
+}
+.first-day-of-month{
+  color: red;
+}
+
+.selected{
+  border: none !important;
+  background-color: #007bff;
+  color:#fff;
+}
+

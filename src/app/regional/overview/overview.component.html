@@ -1,0 +1,72 @@
+<div class="quadrant">
+  <ul class="tick ">
+    <li>{{rankResult?.min == null ? '': '最小值'}}</li>
+    <li>{{rankResult?.midToMin == null ? '': '1/4位'}}</li>
+    <li>{{rankResult?.mid == null ? '': '中位数'}}</li>
+    <li>{{rankResult?.midToMax == null ? '': '3/4位'}}</li>
+    <li>{{rankResult?.max == null ? '': '最大值'}}</li>
+  </ul>
+
+  <svg width="90%" height="2.1rem" version="1.1" viewBox="0 0 440 125" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="5" width="20" height="20" style="fill:rgb(255,255,255);
+        stroke-width:2;stroke:rgb(111,146,234)"/>
+    <rect x="140" y="0" width="200" height="30" style="fill:rgb(111,146,234);
+        stroke-width:2;stroke:rgb(111,146,234)"/>
+    <rect x="420" y="5" width="20" height="20" style="fill:rgb(255,255,255);
+        stroke-width:2;stroke:rgb(111,146,234)"/>
+    <line x1="60" y1="15" x2="420" y2="15" style="stroke:rgb(111,146,234);stroke-width:2"/>
+
+    <line x1="50" y1="25" x2="50" [attr.y2]="rankResult?.min == null ? 25 : 125" stroke-dasharray="3 2"
+          stroke="rgb(159,164,172)"/>
+    <line x1="140" y1="30" x2="140" [attr.y2]="rankResult?.midToMin == null ? 30 : 100" stroke-dasharray="3 2"
+          stroke="rgb(159,164,172)"/>
+    <line x1="240" y1="30" x2="240" [attr.y2]="rankResult?.mid == null ? 30 : 75" stroke-dasharray="3 2"
+          stroke="rgb(159,164,172)"/>
+    <line x1="340" y1="30" x2="340" [attr.y2]="rankResult?.midToMax == null ? 30 : 100" stroke-dasharray="3 2"
+          stroke="rgb(159,164,172)"/>
+    <line x1="430" y1="25" x2="430" [attr.y2]="rankResult?.max == null ? 25 : 125" stroke-dasharray="3 2"
+          stroke="rgb(159,164,172)"/>
+  </svg>
+
+  <ul class="svg-map">
+    <li class="min">{{rankResult?.min == null ? '' : (rankResult?.min[selectedTarget.type] | number: '1.0-2') + selectedTarget.unit}}</li>
+    <li class="one-four">{{rankResult?.midToMin == null ? '' :
+      ((rankResult?.midToMin?.first[selectedTarget.type] + rankResult?.midToMin?.second[selectedTarget.type]) / 2 | number: '1.0-2') + selectedTarget.unit}}</li>
+    <li class="middle">{{rankResult?.mid == null ? '' :
+      ((rankResult?.mid?.first[selectedTarget.type] + rankResult?.mid?.second[selectedTarget.type]) / 2 | number: '1.0-2') + selectedTarget.unit}}</li>
+    <li class="three-four">{{rankResult?.midToMax == null ? '' :
+      ((rankResult?.midToMax?.first[selectedTarget.type] + rankResult?.midToMax?.second[selectedTarget.type]) / 2 | number: '1.0-2') + selectedTarget.unit}}</li>
+    <li class="max">{{rankResult?.max == null ? '' : (rankResult?.max[selectedTarget.type] | number: '1.0-2') + selectedTarget.unit}}</li>
+  </ul>
+</div>
+
+<div class="three-ranking">
+  <div class="title">
+    <span class="icon top3"></span>
+    <span>排名前三的{{selectedLevel?.name}}</span>
+  </div>
+  <ul>
+    <ng-container *ngFor="let item of dataList; index as i;">
+      <li *ngIf="i < 3">
+        <i>{{i + 1}}</i>
+        <span>{{item.name}}</span>
+        <span>{{item[selectedTarget.type] | number: '1.0-2'}}{{selectedTarget.unit}}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<div class="three-ranking">
+  <div class="title">
+    <span class="icon last3"></span>
+    <span>排名后三的{{selectedLevel?.name}}</span>
+  </div>
+  <ul *ngIf="dataList && dataList.length > 3">
+    <ng-container *ngFor="let item of dataList;index as i;">
+      <li *ngIf="i >= (dataList.length - 3)">
+        <i>{{(i + 4) - dataList.length}}</i>
+        <span>{{item.name}}</span>
+        <span>{{item[selectedTarget.type] | number: '1.0-2'}}{{selectedTarget.unit}}</span>
+      </li>
+    </ng-container>
+  </ul>
+</div>

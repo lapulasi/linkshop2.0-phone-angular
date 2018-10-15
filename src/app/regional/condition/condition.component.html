@@ -1,0 +1,23 @@
+<ul class="nav">
+  <li *ngFor="let item of levelList"
+      [ngClass]="{'current': selectedLevel.id == item.id}" (click)="switchLevel(item)">
+    <span>{{item.name}}</span>
+    <span></span>
+  </li>
+</ul>
+<ul class="time-range">
+  <li *ngFor="let item of dateTypeList"
+      [ngClass]="{'current': selectedDateType.type == item.type}"  (click)="switchDateType(item)">
+    <span>{{item.name}}</span>
+    <span class=""></span>
+  </li>
+</ul>
+<div class="select-time">
+  <ul>
+    <li class="icon left-tip" (click)="switchDate(-1)"></li>
+    <li *ngIf="selectedDateType.type === 'day'">{{dateObj.date | date: 'yyyy-M-dd'}}</li>
+    <li *ngIf="selectedDateType.type === 'week'">{{dateObj.date | date: 'yyyy-'}}W{{dateObj.date | week}}</li>
+    <li *ngIf="selectedDateType.type === 'month'">{{dateObj.date | date: 'yyyy-M'}}</li>
+    <li class="icon right-tip" (click)="switchDate(1)"></li>
+  </ul>
+</div>

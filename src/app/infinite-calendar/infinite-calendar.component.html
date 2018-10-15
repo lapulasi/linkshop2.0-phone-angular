@@ -1,0 +1,23 @@
+<div class="wrapper" >
+  <!--<div class="overlay" #overlay [ngStyle]="{'display':showCalendar?'block':'none'}"></div>-->
+  <div class="calendar-input-group">
+    <input type="text" [value]="formatedDateString" disabled>
+    <div class="date-picker-icon">
+      <button class="calendar-button" (click)="toggle()">
+        <img src="assets/images/calendar.svg">
+      </button>
+    </div>
+  </div>
+  <div class="close-wrapper" #closeWrapper>
+    <div class="calendar" [ngStyle]="{'display':showCalendar?'block':'none'}" #calendar>
+
+      <app-infinite-calendar-board [dates]="selectedDates"></app-infinite-calendar-board>
+      <app-infinite-calendar-header></app-infinite-calendar-header>
+      <div id="calendarScrollContainer" class="calendar-container" style="overflow: scroll;padding: 0;" infiniteScroll
+           [infiniteScrollThrottle]="0" [scrollWindow]="false"  (scrolled)="onScroll($event)" [alwaysCallback]="false" #container>
+        <app-infinite-calendar-placeholder [placeHolderNumber]="placeHolderNumber"></app-infinite-calendar-placeholder>
+        <app-infinite-calendar-year #yearComponentList *ngFor="let year of yearList" [year]="year" (onSelected)="onSelectedHandler($event)"></app-infinite-calendar-year>
+      </div>
+    </div>
+  </div>
+</div>

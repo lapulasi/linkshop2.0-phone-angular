@@ -1,0 +1,24 @@
+<div class="regional" id="rankList">
+  <ul class="nav">
+    <li *ngFor="let item of legenList" (click)="switchType(item)" [ngClass]="{'current': selectedLegen.type == item.type}">
+      <span>{{item.name}}</span>
+      <span></span>
+    </li>
+  </ul>
+  <ul class="list rank-list">
+    <li class="title">
+      <span>排名</span>
+      <span>门店名</span>
+      <span>{{selectedLegen.unit}}</span>
+    </li>
+
+    <ng-container *ngIf="shopList != null">
+    <li *ngFor="let item of shopList; index as i;">
+      <span ngClass="{'pink': i == 0, 'yellow': i == 1, 'purple': i == 2}">{{i + 1}}</span>
+      <span>{{item.name}}</span>
+      <span>{{item[selectedLegen.type]}}</span>
+    </li>
+  </ng-container>
+
+  </ul>
+</div>

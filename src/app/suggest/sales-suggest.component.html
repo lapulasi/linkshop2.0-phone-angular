@@ -1,0 +1,73 @@
+<div class="sales-suggest" id="sales-suggest">
+  <!--<ul class="full-data">-->
+    <!--<li>-->
+      <!--<span>累计销额(元)</span>-->
+      <!--<p>692K</p>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span>累计销量(件)</span>-->
+      <!--<p>398</p>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span>累计均价(元)</span>-->
+      <!--<p>1.8K</p>-->
+    <!--</li>-->
+  <!--</ul>-->
+  <div class="trend-map average-sales">
+    <div class="title">
+      平均日销售 <span>分析一段时间销售的变化趋势</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':averageSalesType=='week'}" (click)="saleData(8, 'week');">近8周</li>
+      <li [ngClass]="{'select':averageSalesType=='month'}" (click)="saleData(8, 'month')">近8月</li>
+      <!--<li>按月</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="average-sales" echarts [options]="averageSales"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+  </div>
+  <div class="trend-map weekly-analysis">
+    <div class="title">
+      周内分析 <span>分析一周内的指标变化趋势</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':weeklyAnalysisType === 7}" (click)="weeklyAnalysis(7)">近7天</li>
+      <li [ngClass]="{'select':weeklyAnalysisType === 30}" (click)="weeklyAnalysis(30)">近30天</li>
+      <!--<li [ngClass]="{'select':weeklyAnalysisType === 'all'}" (click)="weeklyAnalysis('all')">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="chart-content">
+        <div id="weekly-analysis-bar"  echarts [options]="weeklyAnalysisEcharts"></div>
+        <!--<div id="weekly-analysis-line"  echarts [options]="weeklyAnalysis1"></div>-->
+      </div>
+    </div>
+    <ul class="labels">
+      <li [ngClass]="{'select':isDisplayed('salesVolume')}" class="select" (click)="selectField('salesVolume')">销量</li>
+      <li [ngClass]="{'select':isDisplayed('salesAmount')}" (click)="selectField('salesAmount')">销额</li>
+      <li [ngClass]="{'select':isDisplayed('avgPrice')}" (click)="selectField('avgPrice')">均价</li>
+      <li [ngClass]="{'select':isDisplayed('guestAvgPrice')}" (click)="selectField('guestAvgPrice')">客均价</li>
+      <li [ngClass]="{'select':isDisplayed('transferRatio')}" (click)="selectField('transferRatio')">转化率</li>
+      <li [ngClass]="{'select':isDisplayed('hourEffectiveness')}" (click)="selectField('hourEffectiveness')">时效</li>
+    </ul>
+  </div>
+  <div class="trend-map sales-competitiveness-analysis">
+    <div class="title">
+      销售竞争力分析 <span>根据此指标可以调整各店销售策略</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':salesCompetitivenessType === 7}" (click)="getSalesCompetitiveness(7)">近7天</li>
+      <li [ngClass]="{'select':salesCompetitivenessType === 30}" (click)="getSalesCompetitiveness(30)">近30天</li>
+      <!--<li [ngClass]="{'select':salesCompetitivenessType === 'all'}" (click)="getSalesCompetitiveness('all')">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="sales-competitiveness-analysis" echarts [options]="salesCompetitiveness"></div>
+        <!--<div id="weekly-analysis-bar"></div>-->
+      </div>
+    </div>
+    <p class="tips">注：点击各个圆可以查看各个圆所代表的门店名称</p>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.root {
+  width: 100% !important;
+  background-color: #FFF;
+  -webkit-overflow-scrolling: touch; }
+  .root.scrolling > div {
+    pointer-events: none; }
+  .root.scrolling label {
+    opacity: 1; }
+
+/*# sourceMappingURL=infinite-calendar-year.component.css.map */

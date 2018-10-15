@@ -1,0 +1,12 @@
+  <div class="overall-data">
+    <ul>
+      <li>{{selectedTarget.name}}{{selectedTarget.unit == '' ? '' : '('+ selectedTarget.unit + ')'}}</li>
+      <li>{{targetData[selectedTarget.type]}}</li>
+    </ul>
+    <div class="col-split"></div>
+    <ul>
+      <li>{{acceptCond.selectedLevel?.name}}总数</li>
+      <li>{{dataList.length}}</li>
+    </ul>
+  </div>
+<app-overview [dataList]="dataList" [selectedTarget]="selectedTarget" [selectedLevel]="acceptCond.selectedLevel"></app-overview>

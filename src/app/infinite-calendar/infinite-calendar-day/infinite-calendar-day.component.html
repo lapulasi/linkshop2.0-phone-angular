@@ -1,0 +1,14 @@
+<li (click)="onClick()" [ngClass]="{'selected': selected,'first-day-of-month':dayOfMonth()===1,'last-day-of-month':dayOfMonth()===31
+,'today':isToday()}">
+
+  <ng-container *ngIf="isFirstDayOfMonth()">
+    <div class="label">{{day.monthValue()}}月</div>
+    <div class="first-day-of-month-content">{{day.dayOfMonth()}}</div>
+    <div class="label">{{day.year()}}</div>
+  </ng-container>
+
+  <ng-container *ngIf="!isFirstDayOfMonth()">
+    <span>{{dayOfMonth()}}</span>
+  </ng-container>
+
+</li>

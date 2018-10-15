@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,KAAM;EACJ,KAAK,EAAE,eAAe;EACtB,gBAAgB,EAAE,IAAI;EACtB,0BAA0B,EAAE,KAAK;EAG/B,qBAAM;IACJ,cAAc,EAAE,IAAI;EAGtB,qBAAM;IACJ,OAAO,EAAE,CAAC",
+"sources": ["infinite-calendar-year.component.scss"],
+"names": [],
+"file": "infinite-calendar-year.component.css"
+}

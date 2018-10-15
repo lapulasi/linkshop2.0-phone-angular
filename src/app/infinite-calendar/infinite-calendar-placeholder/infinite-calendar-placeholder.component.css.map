@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,EAAE;EACA,OAAO,EAAE,MAAM;;AAGjB,EAAE;EACA,KAAK,ECGK,MAAY;EDFtB,MAAM,ECEI,MAAY;EDDtB,SAAS,ECFD,MAAM;EDGd,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,YAAY",
+"sources": ["infinite-calendar-placeholder.component.scss","../_variables.scss"],
+"names": [],
+"file": "infinite-calendar-placeholder.component.css"
+}

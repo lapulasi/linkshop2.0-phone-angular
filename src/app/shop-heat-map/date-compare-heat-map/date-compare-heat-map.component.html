@@ -1,0 +1,15 @@
+<div class="heat-map-compare" >
+  <div class="choose-time">
+    <app-infinite-calendar (onSelected)="onDateRangeChanged1($event)"></app-infinite-calendar>
+
+    <!--<my-date-range-picker #datePicker1 [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged1($event)"></my-date-range-picker>-->
+  </div>
+  <app-heat-map #appHeatMap1 [org]="org" [shopId]="shopId"></app-heat-map>
+
+  <div class="choose-time">
+    <app-infinite-calendar (onSelected)="onDateRangeChanged2($event)"></app-infinite-calendar>
+
+    <!--<my-date-range-picker #datePicker2 [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged2($event)"></my-date-range-picker>-->
+  </div>
+  <app-heat-map #appHeatMap2 [org]="org" [shopId]="shopId"></app-heat-map>
+</div>

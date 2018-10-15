@@ -1,0 +1,16 @@
+@import "../variables";
+div{
+  text-align: center;
+  height: $cell-size;
+  line-height: $cell-size;
+  padding: 0;
+  //border-bottom:  1px solid rgba(0, 0, 0, 0.125);
+}
+span{
+  text-align: center;
+  //width: 5 * $fontSize;
+  height: 1 * $fontSize;
+  line-height: 1 * $fontSize;
+  display: inline-block;
+  margin: 0;
+}

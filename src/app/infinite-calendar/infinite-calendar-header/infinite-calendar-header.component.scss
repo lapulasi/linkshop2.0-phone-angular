@@ -1,0 +1,15 @@
+@import "../variables";
+li{
+  float: left;
+  text-align: center;
+  width: $cell-size;
+  height: $cell-size;
+  line-height: $cell-size;
+  font-size: $fontSize;
+  background: transparent;
+  color: rgb(23,162,184);
+  font-style: italic;
+}
+ul{
+  margin: 0px;
+}

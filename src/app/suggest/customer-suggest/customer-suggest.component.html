@@ -1,0 +1,96 @@
+<div class="customer-suggest" id="customer-suggest">
+  <div class="trend-map people-structure">
+    <div class="title">
+      人流结构<span>可根据性别、年龄改变沟通策略</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':peopleStructureType === 7}" (click)="getPeopleStructure(7)">近7天</li>
+      <li [ngClass]="{'select':peopleStructureType === 30}" (click)="getPeopleStructure(30)">近30天</li>
+      <!--<li [ngClass]="{'select':peopleStructureType === 'all'}" (click)="getPeopleStructure()">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="people-structure" echarts [options]="peopleStructure"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+  </div>
+  <div class="trend-map custom-max-time">
+    <div class="title">
+      顾客最多时段 <span>可根据顾客进店时段调整沟通效率</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':customMaxTimeType === 7}" (click)="getCustomMaxTime(7)">近7天</li>
+      <li [ngClass]="{'select':customMaxTimeType === 30}" (click)="getCustomMaxTime(30)">近30天</li>
+      <!--<li [ngClass]="{'select':customMaxTimeType === 'all'}" (click)="getCustomMaxTime()">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="custom-max-time"  echarts [options]="customMaxTime"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+    <div class="explanation">
+      <ul>
+        <li class="line lf"></li>
+        <li>各时间段客流量占比</li>
+        <li class="line lr"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="trend-map customer-shop-trend">
+    <div class="title">
+      顾客到店趋势 <span>可根据到店趋势判断工作重点</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':customerShopTrendType === 7}" (click)="getCustomerShopTrend(7)">近7天</li>
+      <li [ngClass]="{'select':customerShopTrendType === 30}" (click)="getCustomerShopTrend(30)">近30天</li>
+      <!--<li [ngClass]="{'select':customerShopTrendType === 'all'}" (click)="getCustomerShopTrend('all')">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="customer-shop-trend" echarts [options]="customerShopTrend"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+  </div>
+  <div class="trend-map custom-long-time">
+    <div class="title">
+      顾客长驻时间 <span>可根据顾客驻留情况掌握购买规律</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':customerStayTimeType === 7}" (click)="getCustomerLongTime(7)">近7天</li>
+      <li [ngClass]="{'select':customerStayTimeType === 30}" (click)="getCustomerLongTime(30)">近30天</li>
+      <!--<li [ngClass]="{'select':customerStayTimeType === 'all'}" (click)="getCustomerLongTime()">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="custom-long-time" echarts [options]="customerStayTime"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+    <div class="explanation">
+      <ul>
+        <li class="line lf"></li>
+        <li>各时间段客流量占比</li>
+        <li class="line lr"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="trend-map shop-flow-ratio">
+    <div class="title">
+      各店人流占比<span>可根据各店人流分配资源</span>
+    </div>
+    <ul class="tab">
+      <li [ngClass]="{'select':shopFlowRatioType === 7}" (click)="getShopFlowRatio(7)">近7天</li>
+      <li [ngClass]="{'select':shopFlowRatioType === 30}" (click)="getShopFlowRatio(30)">近30天</li>
+      <!--<li [ngClass]="{'select':shopFlowRatioType === 'all'}" (click)="getShopFlowRatio()">全部</li>-->
+    </ul>
+    <div class="chart">
+      <div class="">
+        <div id="shop-flow-ratio" echarts [options]="shopFlowRatio"></div>
+        <!--<div id="growth-trend-bar"></div>-->
+      </div>
+    </div>
+  </div>
+</div>
